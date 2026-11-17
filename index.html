@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>히스토리아 · 광개토대왕</title>
+  <meta name="description" content="스크롤로 따라가는 광개토대왕 이야기">
+  <meta name="theme-color" content="#000000">
+  <link rel="preload" as="image" href="assets/hero-poster.jpg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <a href="#top" aria-label="히스토리아 홈"><img class="logo" src="assets/logo.png" alt="히스토리아"></a>
+    <nav class="nav" aria-label="주요 메뉴">
+      <a href="#intro">소개</a>
+      <a href="#conquests">주요 정복</a>
+      <a href="#timeline">연표</a>
+      <a href="#menus">둘러보기</a>
+    </nav>
+    <a class="btn-dark" href="#">로그인</a>
+  </header>
+
+  <!-- 스크롤 영상 히어로: 높이 = 스크롤 길이 (style.css --hero-length) -->
+  <section class="hero" id="top" aria-label="광개토대왕 인트로 영상">
+    <div class="stage" id="stage">
+      <!-- src 는 main.js 가 화면/회선에 맞춰 넣습니다 (hero-720 / hero-480) -->
+      <video id="heroVideo" muted playsinline webkit-playsinline preload="auto"
+             poster="assets/hero-poster.jpg" disablepictureinpicture disableremoteplayback
+             aria-hidden="true" tabindex="-1"></video>
+      <img class="still" id="heroStill" src="assets/hero-poster.jpg" alt="투구를 쓴 광개토대왕의 얼굴 클로즈업" hidden>
+
+      <div class="placeholder" id="placeholder" hidden>
+        <strong>영상을 불러오지 못했어요</strong>
+        <span>assets/hero-720.mp4 경로를 확인하거나 로컬 서버로 열어 주세요</span>
+      </div>
+
+      <div class="shade"></div>
+      <div id="captions"></div>
+
+      <div class="scroll-hint" data-in="-1" data-out="0.05">
+        <span id="scrollHintText"></span>
+        <svg width="20" height="28" viewBox="0 0 20 28" aria-hidden="true"><rect x="1.5" y="1.5" width="17" height="25" rx="8.5" fill="none" stroke="#fff" stroke-width="2"/><circle class="scroll-hint__dot" cx="10" cy="9" r="2.5" fill="#fff"/></svg>
+      </div>
+
+      <div class="progress" aria-hidden="true"><div class="progress__bar"></div></div>
+
+      <div class="loader" id="loader" role="status" aria-live="polite">
+        <div class="loader__ring" aria-hidden="true"></div>
+        <p><span id="loaderText"></span> <b id="loaderPct">0%</b></p>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="section intro" id="intro">
+      <div class="intro__text">
+        <p class="eyebrow" data-k="intro.eyebrow"></p>
+        <h2 data-k="intro.title"></h2>
+        <div class="intro__body" id="introBody"></div>
+      </div>
+      <dl class="facts" id="introFacts"></dl>
+    </section>
+
+    <section class="section" id="conquests">
+      <p class="eyebrow" data-k="conquests.eyebrow"></p>
+      <h2 data-k="conquests.title"></h2>
+      <ol class="conquest-grid" id="conquestList"></ol>
+    </section>
+
+    <section class="section" id="timeline">
+      <p class="eyebrow" data-k="timeline.eyebrow"></p>
+      <h2 data-k="timeline.title"></h2>
+      <ol class="timeline" id="timelineList"></ol>
+    </section>
+
+    <section class="section menus" id="menus">
+      <div class="menus__head">
+        <h2 data-k="menus.title"></h2>
+        <p data-k="menus.lead"></p>
+      </div>
+      <div class="menus__grid" id="menuGrid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <img src="assets/logo.png" alt="히스토리아">
+    <span data-k="footer"></span>
+  </footer>
+
+  <script src="content.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
